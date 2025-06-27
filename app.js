@@ -37,42 +37,42 @@ res.render("index.ejs",{posts});
 })
 
 
-app.get("/posts/new",(req,res)=>{
+app.get("/new",(req,res)=>{
     res.render("new.ejs")
 })
 
 
-app.post("/posts",(req,res)=>{
+app.post("/",(req,res)=>{
   let {username,content}=req.body;
   let id = uuidv4(); 
   posts.push({id,username,content});
   res.redirect("/posts")
 })
 
-app.get("/posts/:id",(req,res)=>{
+app.get("/:id",(req,res)=>{
     let {id}= req.params;
 let post = posts.find((p) => id == p.id);
 res.render("show.ejs",{post});
 })
 
-app.get("/posts/:id/edit",(req,res)=>{
+app.get("/:id/edit",(req,res)=>{
     let {id}= req.params;
     let post = posts.find((p) => id == p.id);
     res.render("edit.ejs",{post});
 })
 
-app.patch("/posts/:id",(req,res)=>{
+app.patch("/:id",(req,res)=>{
     let {id}= req.params;
     let newContent = req.body.content;
     let post = posts.find((p) => id == p.id);
     console.log(post);
  
     post.content = newContent;
-    res.redirect("/posts");
+    res.redirect("/");
 })
 
-app.delete("/posts/:id",(req,res)=>{
+app.delete("/:id",(req,res)=>{
     let {id}= req.params;
      posts = posts.filter((p) => id != p.id);
-    res.redirect("/posts");
+    res.redirect("/");
 })
