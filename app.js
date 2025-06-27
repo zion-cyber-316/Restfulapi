@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express()
-const port = 8080;
+const port = 3000;
 const path = require("path");
 
 const { v4: uuidv4 } = require('uuid');
@@ -32,7 +32,7 @@ app.listen(port,()=>{
     console.log(`app is listening ${port}`)
 })
 
-app.get("/posts",(req,res)=>{
+app.get("/",(req,res)=>{
 res.render("index.ejs",{posts});
 })
 
